@@ -1,0 +1,111 @@
+﻿@model Neoxam.Domain.Entities.reclamation
+@{
+    ViewBag.Title = "Ajout Reclamation";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+}
+
+<style>
+    .cke_inner.cke_reset {
+        /* width: 100%; */
+   
+    }
+</style>
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+
+
+<section class="content">
+    <h2>Ajouter une Reclamation</h2>
+    <div class="col-md-6">
+        @using (Html.BeginForm("Create", "Reclamation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Formulaire d'ajout</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Sujet du reclamation</label>
+
+                        @Html.EditorFor(model => model.title, new
+       {
+           htmlAttributes = new
+           { @class = "form-control" }
+       })
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Contenue du reclamation</label>
+
+
+
+                        @Html.TextAreaFor(model => model.description, new { @id = "description", @class = "form-control", @rows = "50" }) @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                        <script>
+
+                CKEDITOR.replace("description");
+                        </script> @*@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } }) @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })*@
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Category du reclamation</label>
+
+                        @Html.EnumDropDownListFor(model => model.category, new { htmlAttributes = new { @class = "form-control" } })
+
+
+
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Importer une piece jointe</label>
+
+                        @Html.TextBox("file", null, new { type = "file" })
+
+
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
+                </div>
+
+            </div>
+
+
+        }
+    </div>
+
+
+
+    </div>
+</section>

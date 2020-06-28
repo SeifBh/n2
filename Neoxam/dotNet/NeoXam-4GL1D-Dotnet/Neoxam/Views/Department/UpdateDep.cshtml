@@ -1,0 +1,60 @@
+﻿@model Neoxam.Domain.Entities.department
+@{
+    ViewBag.Title = "Ajout Departement";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+}
+
+<section class="content">
+    <h2>Modif un département</h2>
+    <div class="col-md-6">
+        @using (Html.BeginForm())
+        {
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Formulaire de Modification</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id)
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nom du département</label>
+
+
+
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Ajouter une brief description</label>
+
+
+
+                        @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-warning pull-right">Modifer</button>
+                </div>
+
+            </div>
+
+
+        }
+    </div>
+
+
+    </div>
+</section>

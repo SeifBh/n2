@@ -1,0 +1,56 @@
+﻿@model Neoxam.Domain.Entities.job
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<div class="col-md-6">
+
+    <!-- /.box -->
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Liste des départements</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table table-condensed">
+                <tbody>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Nom dep</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+
+                    </tr>
+                    @foreach (var p in ViewBag.res)
+                    {
+                        <tr>
+                            <td>@p.id</td>
+                            <td>@p.name</td>
+                            <td>
+                                @Html.ActionLink("modifier", "UpdateJob", new { id = @p.id })
+
+
+
+                            </td>
+                            <td><a href="/Job/deleteJob/@p.id">Delete</a></td>
+
+                        </tr>
+
+
+
+
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>

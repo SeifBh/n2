@@ -1,0 +1,257 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+}
+
+<h2>Details</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script>
+
+    function myFunction() {
+
+        var content = document.getElementById("sectionDetails").innerHTML;
+        var mywindow = window.open('', 'Print', 'height=600,width=800');
+
+        mywindow.document.write('<html><head><title>Print</title>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(content);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close();
+        mywindow.focus()
+        mywindow.print();
+        mywindow.close();
+        return true;
+
+      
+    }
+
+  
+
+
+</script>
+<style>
+    .cke_inner.cke_reset {
+        /* width: 100%; */
+    
+    }
+</style>
+
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+
+
+<section class="content">
+    <div class="row">
+        
+            <!-- /.col -->
+        <div class="col-md-4">
+         
+            <!-- Widget: user widget style 1 -->
+            <div class="box box-widget widget-user-2">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-yellow">
+                    <div class="widget-user-image">
+                        <img class="img-circle" src="/Content/Upload/@ViewBag.employeeSelected.path_image" alt="User Avatar">
+                    </div>
+                    <!-- /.widget-user-image -->
+                    <h3 class="widget-user-username">@ViewBag.employeeSelected.first_name @ViewBag.employeeSelected.last_name</h3>
+                    <h5 class="widget-user-desc">@ViewBag.employeeSelected.DTYPE</h5>
+                    <h5 class="widget-user-desc">@ViewBag.employeeSelected.phone_number</h5>
+                </div>
+             
+            </div>
+
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>@ViewBag.countPerso</h3>
+
+                    <p>Nombre de reclamation</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                     <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+
+
+
+            <!-- /.widget-user -->
+        </div>
+
+            <div class="col-md-8" id="sectionDetails">
+                <a href="/Reclamation/boxReclamation" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Retour</a><br /><br />
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Réference : @ViewBag.res.id</h3>
+
+                 
+                </div>
+
+
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-read-info">
+                        <h3>@ViewBag.res.title</h3>
+                        <h5>
+                            From: @ViewBag.employeeSelected.mail_address
+                            <span class="mailbox-read-time pull-right">@ViewBag.res.dateReclamation</span>
+                        </h5>
+                    </div>
+                    <!-- /.mailbox-read-info -->
+                    <div class="mailbox-controls with-border text-center">
+                        <div class="btn-group pull-right">
+                            <br />
+                            <button onclick="myFunction()" type="button" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
+                            <br />
+
+                        </div>
+                        <!-- /.btn-group -->
+
+                    </div>
+                    <!-- /.mailbox-controls -->
+                    <div class="mailbox-read-message">
+                        @Html.Raw(HttpUtility.HtmlDecode(ViewBag.res.description))
+
+
+                    </div>
+                    <!-- /.mailbox-read-message -->
+                </div>
+                <!-- /.box-body -->
+                <!-- /.box-footer -->
+                <div class="box-footer">
+                    @if (ViewBag.res.path_file != "")
+                    {
+
+
+                        <ul class="mailbox-attachments clearfix">
+                            <li>
+                                <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+
+                                <div class="mailbox-attachment-info">
+                                    <a href="~/Content/Upload/ReclamationFolder/@ViewBag.res.path_file" class="mailbox-attachment-name" download><i class="fa fa-paperclip"></i> @ViewBag.res.path_file</a>
+                                    <span class="mailbox-attachment-size">
+
+                                        <a href="~/Content/Upload/ReclamationFolder/@ViewBag.res.path_file" class="btn btn-default btn-xs pull-right" download><i class="fa fa-cloud-download"></i></a>
+                                    </span>
+                                </div>
+                            </li>
+
+
+
+                        </ul>
+                    }
+                    <div class="pull-right">
+                        <button type="button" id="btnReply" class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
+                        <button type="button" id="btnHide" class="btn btn-default"><i class="fa fa-share"></i> Hide</button>
+                    </div>
+
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /. box -->
+            @using (Html.BeginForm("SendEmail", "Reclamation", new { id = ViewBag.res.id }, FormMethod.Get, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box box-info" id="replyForm">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Horizontal Form</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Titre</label>
+
+                            <div class="col-sm-10">
+
+                                @Html.TextBox("subjectString", "Reponse - " + (string)ViewBag.res.title,
+null,
+new
+{
+    id = "subjectString",
+
+    @class = "form-control"
+})
+
+
+
+
+
+
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Message</label>
+
+                            <div class="col-sm-10">
+
+
+
+                                @Html.TextArea("subjectBody",
+    null,
+    new
+    {
+        id = "subjectBody",
+        @class = "form-control"
+    })
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <input type="hidden" class="form-control" value="@ViewBag.res.id" id="id" placeholder="body">
+
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+
+
+
+
+
+                        <button type="button" id="btnCancel" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-info pull-right">Envoyer</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+
+
+
+
+        <!-- /.col -->
+
+            }
+            <!-- /.row -->
+</section>
+
+<script>
+
+    $(document).ready(function () {
+        $("#replyForm").hide();
+        $("#btnReply").click(function () {
+            $("#replyForm").show();
+        });
+
+        $("#btnHide").click(function () {
+            $("#replyForm").hide();
+        });
+
+        $("#btnCancel").click(function () {
+            $("#replyForm").hide();
+        });
+
+
+
+    });
+
+
+
+
+</script>

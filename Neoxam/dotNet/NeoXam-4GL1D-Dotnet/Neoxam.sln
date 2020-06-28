@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neoxam.Presentation", "Neoxam\Neoxam.Presentation.csproj", "{29F7F5B5-C721-49DB-B05E-CDA41E9E47B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neoxam.Data", "Neoxam.Data\Neoxam.Data.csproj", "{F05CFE8C-B732-420F-8AEF-87757587535F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neoxam.Domain", "Neoxam.Domain\Neoxam.Domain.csproj", "{60485560-EF5F-4704-91C4-E6285F870EAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neoxam.Pattern", "Neoxam.Pattern\Neoxam.Pattern.csproj", "{780E7872-1A20-43CD-AE7B-BA5F8311EAB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neoxam.Service", "Neoxam.Service\Neoxam.Service.csproj", "{96762FF8-7C58-450A-ACD5-356049A5E629}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29F7F5B5-C721-49DB-B05E-CDA41E9E47B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F7F5B5-C721-49DB-B05E-CDA41E9E47B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F7F5B5-C721-49DB-B05E-CDA41E9E47B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F7F5B5-C721-49DB-B05E-CDA41E9E47B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F05CFE8C-B732-420F-8AEF-87757587535F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F05CFE8C-B732-420F-8AEF-87757587535F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F05CFE8C-B732-420F-8AEF-87757587535F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F05CFE8C-B732-420F-8AEF-87757587535F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60485560-EF5F-4704-91C4-E6285F870EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60485560-EF5F-4704-91C4-E6285F870EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60485560-EF5F-4704-91C4-E6285F870EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60485560-EF5F-4704-91C4-E6285F870EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{780E7872-1A20-43CD-AE7B-BA5F8311EAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{780E7872-1A20-43CD-AE7B-BA5F8311EAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{780E7872-1A20-43CD-AE7B-BA5F8311EAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{780E7872-1A20-43CD-AE7B-BA5F8311EAB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96762FF8-7C58-450A-ACD5-356049A5E629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96762FF8-7C58-450A-ACD5-356049A5E629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96762FF8-7C58-450A-ACD5-356049A5E629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96762FF8-7C58-450A-ACD5-356049A5E629}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

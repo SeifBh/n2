@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+
+}
+
+<h2>Index</h2>
+
+<script src=@Url.Content("/Content/bower_components/jquery/dist/jquery.min.js") type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function ($) {
+
+        $("#searchRec").keyup(function () {
+            var searchRec = $('#searchRec').val();
+
+
+
+          $("#tblStudent tbody tr").remove();
+       $.ajax({
+           type: 'Get',
+           url: '@Url.Action("getRec")',
+           dataType: 'json',
+           data: { 'searchRec': searchRec },
+           success: function (data) {
+               var items = '';
+               $.each(data, function (i, item) {
+                   var rows = "<tr>"
+                   + "<td class='prtoducttd'>" + item.id + "</td>"
+                   + "<td class='prtoducttd'>" + item.title + "</td>"
+                   + "<td class='prtoducttd'>" + item.description + "</td>"
+                   + "</tr>";
+                   $('#tblStudent tbody').append(rows);
+               });
+           },
+           error: function (ex) {
+               alert("sssss");
+               var r = jQuery.parseJSON(response.responseText);
+               alert("Message: " + r.Message);
+               alert("StackTrace: " + r.StackTrace);
+               alert("ExceptionType: " + r.ExceptionType);
+           }
+       });
+       return false;
+
+
+
+
+        });
+
+
+    });
+
+
+
+</script>
+
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>
+                <div>
+                    Search reclamation: @Html.TextBox("searchRec")
+                </div>
+            </td>
+           
+        </tr>
+    </table>
+}
+
+
+<div class="col-md-6">
+
+    <!-- /.box -->
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Liste des employees</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table id="tblStudent" class="table table-condensed">
+                <tbody>
+                    <tr>
+                        <th>id </th>
+                        <th>sujet </th>
+                        <th>descp</th>
+                        <th>cat</th>
+
+
+                    </tr>
+                    @foreach (var p in ViewBag.res)
+                    {
+                        <tr>
+                            <td>@p.id</td>
+                            <td>@p.title</td>
+                            <td>
+                                <div class=''>
+                                    @Html.Raw(HttpUtility.HtmlDecode(@p.description))
+                                </div>
+
+                            </td>
+                            <td>@p.category</td>
+                            <td>@p.status</td>
+                            <td>
+                                @Html.ActionLink("update", "updateReclamation", new { id = p.id })
+
+
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("delete", "deleteRec", new { id = p.id })
+
+
+                            </td>
+
+                        </tr>
+
+
+
+
+                    }
+
+
+                </tbody>
+            </table>
+
+            <br />
+            <br />
+
+            <div><a href="@Url.Action("DownloadViewPDF", "Reclamation")">Download ViewAsPdf</a></div>
+
+        </div>
+    </div>
+</div>

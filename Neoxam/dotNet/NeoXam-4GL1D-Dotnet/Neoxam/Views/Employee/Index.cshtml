@@ -1,0 +1,132 @@
+﻿@Model Neoxam.Domain.Entities.user
+@{
+    ViewBag.Title = "Liste des employees";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>
+                <div>
+                    Search by FirstName: @Html.TextBox("searchString")
+                </div>
+            </td>
+            <td>
+                <input type="submit" value="Search" id="submit" />
+            </td>
+        </tr>
+    </table>
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">liste des employes</h3>
+                </div>
+
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row">
+                            <div class="col-sm-12">
+                                <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">ID Employee</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Image</th>
+
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">FirstName</th>
+
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">LastName</th>
+
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Username</th>
+
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Email</th>
+
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Phone Number</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">#Modifier</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">#Supprimer</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var p in ViewBag.res)
+                                        {
+
+
+
+
+
+
+
+
+
+                                            <tr role="row" class="odd">
+                                                <td>@p.id</td>
+                                                <td>
+                                                    @if (p.path_image != "")
+                                                    {
+                                                        <img src="~/Content/Upload/@p.path_image" width="50" height="50" />
+
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Content/Upload/user1-128x128.jpg" width="50" height="50" />
+
+                                                    }
+                                                </td>
+                                                <td>@p.first_name</td>
+                                                <td>@p.last_name</td>
+                                                <td>@p.username</td>
+                                                <td>@p.mail_address</td>
+                                                <td>@p.phone_number</td>
+                                                <td>
+                                                    @Html.ActionLink("modifier", "UpdateEmployee", new { Id = @p.id })
+
+
+                                                </td>
+                                                <td>
+
+                                                    @Html.ActionLink("supprimer", "deleteE", new { Id = @p.id })
+
+
+
+                                                </td>
+                                            </tr>
+
+
+                                        }
+                                    </tbody>
+                                    <tfoot>
+
+                                </table>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div><a href="@Url.Action("DownloadViewPDF", "Employee")">Download ViewAsPdf</a></div>
+
+
+            <!-- /.box -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+
+    <!-- /.row -->
+</section>

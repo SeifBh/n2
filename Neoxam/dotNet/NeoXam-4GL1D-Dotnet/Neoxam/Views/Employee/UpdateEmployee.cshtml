@@ -1,0 +1,255 @@
+﻿@model Neoxam.Domain.Entities.user
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+}
+
+
+<h2>Create</h2>
+
+    @using (Html.BeginForm("UpdateEmployee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id)
+
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Formulaire Ajout d'un employee</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+
+
+
+
+            <div class="col-md-12" style="">
+                <div id="j_idt7:msgs" class="ui-messages ui-widget" aria-live="polite"></div>
+            </div>
+            <div class="box-body">
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nom</label>
+
+
+                    @Html.EditorFor(model => model.first_name, new
+               {
+                   htmlAttributes = new
+                   { @class = "form-control" }
+               })
+                    @Html.ValidationMessageFor(model => model.first_name, "", new
+               {
+                   @class
+= "text-danger"
+               })
+
+
+
+
+                </div>
+
+
+
+
+
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Prenom</label>
+
+
+                    @Html.EditorFor(model => model.last_name, new
+               {
+                   htmlAttributes = new
+                   { @class = "form-control" }
+               })
+                    @Html.ValidationMessageFor(model => model.last_name, "", new
+               {
+                   @class
+= "text-danger"
+               })
+
+
+
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+
+
+                    @Html.EditorFor(model => model.username, new
+               {
+                   htmlAttributes = new
+                   { @class = "form-control" }
+               })
+                    @Html.ValidationMessageFor(model => model.username, "", new
+               {
+                   @class
+= "text-danger"
+               })
+
+
+
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="mail_address">Email</label>
+
+
+                    @Html.EditorFor(model => model.mail_address, new
+               {
+                   htmlAttributes = new
+                   { @class = "form-control" }
+               })
+                    @Html.ValidationMessageFor(model => model.mail_address, "", new
+               {
+                   @class
+= "text-danger"
+               })
+
+
+
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="phone_number">tel</label>
+
+
+                    @Html.EditorFor(model => model.phone_number, new
+               {
+                   htmlAttributes = new
+                   { @class = "form-control" }
+               })
+                    @Html.ValidationMessageFor(model => model.phone_number, "", new
+               {
+                   @class
+= "text-danger"
+               })
+
+
+
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+
+                    @Html.EditorFor(model => model.password, new
+               {
+                   htmlAttributes = new
+                   { @class = "form-control" }
+               })
+                    @Html.ValidationMessageFor(model => model.password, "", new
+               {
+                   @class
+= "text-danger"
+               })
+
+
+
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+
+
+                    @Html.EditorFor(model => model.address, new
+               {
+                   htmlAttributes = new
+                   { @class = "form-control" }
+               })
+                    @Html.ValidationMessageFor(model => model.address, "", new
+               {
+                   @class
+= "text-danger"
+               })
+
+
+
+
+                </div>
+
+
+      
+
+
+
+
+
+
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.métier_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ddlVendor", (SelectList)ViewData["myproducer"], "--- Choisir une métier ---", new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.métier_Id, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+
+                <br />
+
+
+
+
+                <img src="/Content/Upload/@Html.DisplayFor(model =>model.path_image)" style="height:200px;width:200px;" />
+
+
+                @Html.HiddenFor(model => model.path_image)
+
+
+
+
+
+                <div class="editor-field">
+                    <label>Télécharger une photo</label>
+                    @Html.TextBox("file", "", new { type = "file" })
+
+
+                    @Html.ValidationMessageFor(model => model.path_image)
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+              
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+}

@@ -1,0 +1,68 @@
+﻿
+@model Neoxam.Domain.Entities.reclamation
+
+
+
+@{
+    ViewBag.Title = "chartRec";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+}
+
+<div class="col-md-6">
+
+    <!-- /.box -->
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Liste des employees</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table id="tblStudent" class="table table-condensed">
+                <tbody>
+                    <tr>
+                        <th>id </th>
+                        <th>sujet </th>
+                        <th>descp</th>
+                        <th>cat</th>
+
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.description)
+
+
+                            </td>
+                         
+                            <td>
+
+
+                            </td>
+
+                            <td>
+
+
+                            </td>
+
+                        </tr>
+
+
+
+
+                    }
+
+
+                </tbody>
+            </table>
+
+            <br />
+            <br />
+
+            <div><a href="@Url.Action("DownloadViewPDF", "Reclamation")">Download ViewAsPdf</a></div>
+
+        </div>
+    </div>
+</div>

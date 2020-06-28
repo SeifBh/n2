@@ -1,0 +1,67 @@
+﻿@model Neoxam.Domain.Entities.job
+@{
+    ViewBag.Title = "Ajout Departement";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+}
+
+<section class="content">
+    <h2>Ajouter une métier</h2>
+    <div class="col-md-6">
+        @using (Html.BeginForm("Create", "Job", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Formulaire d'ajout</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id)
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nom du métier</label>
+
+
+
+                        @Html.EditorFor(model => model.name, new
+       {
+           htmlAttributes = new
+           { @class = "form-control" }
+       })
+                        @Html.ValidationMessageFor(model => model.name, "", new
+       {
+           @class
+= "text-danger"
+       })
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Affecter un département</label>
+
+
+
+                        @Html.DropDownList("ddlVendor", (SelectList)ViewData["mydep"], "--- Choisir un département ---", new { @class = "form-control" })
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
+                </div>
+
+            </div>
+
+
+        }
+    </div>
+
+
+    </div>
+</section>

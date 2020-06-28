@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "stat2";
+}
+
+<h2>stat2</h2>
+<script src=@Url.Content("/Scripts/Chart.min.js") type="text/javascript"></script>
+<script src=@Url.Content("/Content/bower_components/jquery/dist/jquery.min.js") type="text/javascript"></script>
+<script src=@Url.Content("/Content/bootstrap.min.js") type="text/javascript"></script>
+<link rel="stylesheet" href=@Url.Content("/Content/bower_components/bootstrap/dist/css/bootstrap.min.css") />
+<style>
+    #chart_container {
+        width: 400px;
+        height: 400px;
+        border: 1px solid red;
+        padding: 1px;
+        border-radius: 4px;
+    }
+</style>
+
+<script type="text/javascript">
+	var repArray = @Html.Raw(Json.Encode(ViewBag.REP));
+	var ages = @Html.Raw(Json.Encode(ViewBag.AGES));
+	var ctx = $("#bar_chart");
+	var varChart = new Chart(ctx,{
+
+		type : 'bar',
+		data:{
+			labels:ages,
+			datasets:[{
+				label:"Bar Chart Example",
+				data:repArray,
+				backgroundColor:["rgba(242,166,54,.5)","rgba(145,65,72,.5","74,25,95,.5"],
+				borderColor:["red","black","gold"],
+				borderWidth:1
+			}]
+		},
+
+		options:{
+			maintainAspectRatio:false,
+			sclaes:{xAxes:[{ticks:{beginAtZero:true}}]},
+			legend:{display:false},
+
+
+
+		}
+
+
+	});
+
+</script>
+<div id="chart_container">
+    <canvas id="bar_chart"></canvas>
+
+
+</div>
+

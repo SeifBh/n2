@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+}
+
+<h2>Index stat</h2>
+
+<h2>stat2</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src=@Url.Content("/Content/bower_components/bootstrap/dist/css/Chart.min.js")></script>
+<script src=@Url.Content("/Content/bower_components/bootstrap/dist/js/bootstrap.min.js") type="text/javascript"></script>
+<link rel="stylesheet" href=@Url.Content("/Content/bower_components/bootstrap/dist/css/bootstrap.min.css") />
+<style>
+    #chart_container {
+        width: 400px;
+        height: 400px;
+        border: 1px solid red;
+        padding: 1px;
+        border-radius: 4px;
+    }
+</style>
+
+<section class="content">
+    <div class="col-md-12">
+        <div class="box">
+            <div id="chart_container">
+                <canvas id="bar_chart"></canvas>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+    var repArray = @Html.Raw(Json.Encode(ViewBag.REP));
+    console.log(repArray);
+    console.log(typeof repArray);
+    var ages = @Html.Raw(Json.Encode(ViewBag.AGES2));
+
+	var ctx = $("#bar_chart");
+	var varChart = new Chart(ctx,{
+
+	    type : 'bar',
+		data:{
+			labels:ages,
+			datasets:[{
+				label:"Reclamation/Employee",
+				data:repArray,
+				backgroundColor: [
+                                      'rgba(255, 99, 132, 0.2)',
+                                      'rgba(54, 162, 235, 0.2)',
+                                      'rgba(255, 206, 86, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(153, 102, 255, 0.2)',
+                                      'rgba(255, 159, 64, 0.2)',
+                                      'rgba(255, 0, 0)',
+                                      'rgba(0, 255, 0)',
+                                      'rgba(0, 0, 255)',
+                                      'rgba(192, 192, 192)',
+                                      'rgba(255, 255, 0)',
+                                      'rgba(255, 0, 255)'
+				],
+				borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 0, 0)',
+                    'rgba(0, 255, 0)',
+                    'rgba(0, 0, 255)',
+                    'rgba(192, 192, 192)',
+                    'rgba(255, 255, 0)',
+                    'rgba(255, 0, 255)'
+				],
+				borderWidth:1
+			}]
+		},
+
+		options:{
+			maintainAspectRatio:false,
+			scales: {
+			   
+			    yAxes: [{
+                        	
+			        display: true,
+			        scaleLabel: {
+			            display: true,
+			            labelString: 'Nombre des réclamations',
+			            fontStyle: 'bold'
+			        },
+			        ticks: {
+			            beginAtZero:true,
+
+			            callback: function(value, index, values) {
+			                return parseFloat(value).toFixed(2);
+			            },
+			            autoSkip: true,
+			            maxTicksLimit: 10,
+			            stepSize: 1.0
+			        }
+			    }]
+			},
+			legend:{display:true},
+			title: {
+			    display: true,
+			    text: 'Statistique Reclamation'
+			}
+
+
+		}
+
+
+	});
+
+</script>
+

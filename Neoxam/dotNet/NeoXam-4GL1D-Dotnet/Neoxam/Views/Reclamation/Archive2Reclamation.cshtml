@@ -1,0 +1,475 @@
+﻿
+@{
+    ViewBag.Title = "Archive2Reclamation";
+    Layout = "~/Views/Shared/Back/_MyLayout.cshtml";
+}
+
+<h2>boxReclamation</h2>
+<style>
+    tr.notReadYet {
+        background-color: #f3ff4170 !important;
+    }
+</style>
+<script src=@Url.Content("/Content/bower_components/jquery/dist/jquery.min.js") type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function ($) {
+
+
+        $("#searchTechnique").click(function () {
+            $("#searchTechnique i").css("background-color", "red");
+            $("#searchTechnique i").css("border-radius", "100%");
+
+            $("#searchFin i").css("background-color", "white");
+            $("#searchFin i").css("border-radius", "0%");
+
+            $("#searchAutre i").css("background-color", "white");
+            $("#searchAutre i").css("border-radius", "0%");
+
+
+
+            $("#tblStudent tbody td").remove();
+            $.ajax({
+                type: 'Get',
+                url: '@Url.Action("getRecByTechnique")',
+                dataType: 'json',
+                data: {},
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                        + "<td class='prtoducttd'>" + item.id + "</td>"
+                        + "<td class='prtoducttd'>" +
+
+
+
+                        item.status + "</td>"
+                        + "<td class='prtoducttd'>" + item.category + "</td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/Details/" + item.id + "'>" + item.title + "</a></td>"
+                                           + "<td class='prtoducttd'>" + item.description + "</td>"
+
+                        + "<td class='prtoducttd'>" + item.dateReclamation + "</td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/archiveReclamation/" + item.id + "'>archive</a></td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/updateReclamation/" + item.id + "'>Update</a></td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/deleteRec/" + item.id + "'>Delete</a></td>"
+
+                        + "</tr>";
+                        $('#tblStudent tbody').append(rows);
+                    });
+                },
+                error: function (ex) {
+                    alert("sssss");
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+        $("#searchFin").click(function () {
+
+
+
+
+            $("#searchFin i").css("background-color", "yellow");
+            $("#searchFin i").css("border-radius", "100%");
+
+            $("#searchTechnique i").css("background-color", "white");
+            $("#searchTechnique i").css("border-radius", "0%");
+
+            $("#searchAutre i").css("background-color", "white");
+            $("#searchAutre i").css("border-radius", "0%");
+
+
+
+            $("#tblStudent tbody td").remove();
+            $.ajax({
+                type: 'Get',
+                url: '@Url.Action("getRecByFin")',
+                dataType: 'json',
+                data: {},
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                        + "<td class='prtoducttd'>" + item.id + "</td>"
+                        + "<td class='prtoducttd'>" +
+
+
+
+                        item.status + "</td>"
+                        + "<td class='prtoducttd'>" + item.category + "</td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/Details/" + item.id + "'>" + item.title + "</a></td>"
+                                           + "<td class='prtoducttd'>" + item.description + "</td>"
+
+                        + "<td class='prtoducttd'>" + item.dateReclamation + "</td>"
+                                                + "<td class='prtoducttd'><a href='/Reclamation/archiveReclamation/" + item.id + "'>archive</a></td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/updateReclamation/" + item.id + "'>Update</a></td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/deleteRec/" + item.id + "'>Delete</a></td>"
+
+                        + "</tr>";
+                        $('#tblStudent tbody').append(rows);
+                    });
+                },
+                error: function (ex) {
+                    alert("sssss");
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+
+
+
+
+
+        });
+
+
+
+
+
+
+        $("#searchAutre").click(function () {
+
+
+
+            $("#searchAutre i").css("background-color", "blue");
+            $("#searchAutre i").css("border-radius", "100%");
+
+            $("#searchTechnique i").css("background-color", "white");
+            $("#searchTechnique i").css("border-radius", "0%");
+
+            $("#searchFin i").css("background-color", "white");
+            $("#searchFin i").css("border-radius", "0%");
+
+
+
+
+            $("#tblStudent tbody td").remove();
+            $.ajax({
+                type: 'Get',
+                url: '@Url.Action("getRecByAutres")',
+                dataType: 'json',
+                data: {},
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                        + "<td class='prtoducttd'>" + item.id + "</td>"
+                        + "<td class='prtoducttd'>" +
+
+
+
+                        item.status + "</td>"
+                        + "<td class='prtoducttd'>" + item.category + "</td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/Details/" + item.id + "'>" + item.title + "</a></td>"
+                                           + "<td class='prtoducttd'>" + item.description + "</td>"
+
+                        + "<td class='prtoducttd'>" + item.dateReclamation + "</td>"
+                                                + "<td class='prtoducttd'><a href='/Reclamation/archiveReclamation/" + item.id + "'>archive</a></td>"
+
+                        + "<td class='prtoducttd'><a href='/Reclamation/updateReclamation/" + item.id + "'>Update</a></td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/deleteRec/" + item.id + "'>Delete</a></td>"
+
+                        + "</tr>";
+                        $('#tblStudent tbody').append(rows);
+                    });
+                },
+                error: function (ex) {
+                    alert("sssss");
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+
+
+
+
+
+        });
+        $("#searchRec").keyup(function () {
+            var searchRec = $('#searchRec').val();
+
+
+
+            $("#tblStudent tbody td").remove();
+            $.ajax({
+                type: 'Get',
+                url: '@Url.Action("getRec")',
+                dataType: 'json',
+                data: { 'searchRec': searchRec },
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                        + "<td class='prtoducttd'>" + item.id + "</td>"
+                        + "<td class='prtoducttd'>" +
+
+
+
+                        item.status + "</td>"
+                        + "<td class='prtoducttd'>" + item.category + "</td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/Details/" + item.id + "'>" + item.title + "</a></td>"
+                                           + "<td class='prtoducttd'>" + item.description + "</td>"
+
+                        + "<td class='prtoducttd'>" + item.dateReclamation + "</td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/updateReclamation/" + item.id + "'>Update</a></td>"
+                        + "<td class='prtoducttd'><a href='/Reclamation/deleteRec/" + item.id + "'>Delete</a></td>"
+
+                        + "</tr>";
+                        $('#tblStudent tbody').append(rows);
+                    });
+                },
+                error: function (ex) {
+                    alert("sssss");
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+
+
+
+
+        });
+
+
+    });
+
+
+
+</script>
+
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Compose</a>
+
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Folders</h3>
+
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body no-padding">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
+
+
+
+                        <li>
+                            <a href="Reclamation/Archive"><i class="fa fa-filter"></i> Reclamation Archivé <span class="label label-warning pull-right">65</span></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /. box -->
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Labels</h3>
+
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body no-padding">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#" id="searchTechnique"><i class="fa fa-circle-o text-red"></i> Technique</a></li>
+                        <li><a href="#" id="searchFin"><i class="fa fa-circle-o text-yellow"></i> Financiere</a></li>
+                        <li><a href="#" id="searchAutre"><i class="fa fa-circle-o text-light-blue"></i> Autres</a></li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Inbox</h3>
+
+                    <div class="box-tools pull-right">
+                        <div class="has-feedback">
+                            <input type="text" class="form-control input-sm" id="searchRec" placeholder="recherche reclamation">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+                        <!-- Check all button -->
+                        <button type="button" class="btn btn-default btn-sm checkbox-toggle">
+                            <i class="fa fa-square-o"></i>
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+                        </div>
+                        <!-- /.btn-group -->
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                        <div class="pull-right">
+                            1-50/200
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                            </div>
+                            <!-- /.btn-group -->
+                        </div>
+                        <!-- /.pull-right -->
+                    </div>
+                    <div class="table-responsive mailbox-messages">
+                        <table id="tblStudent" class="table table-hover table-striped">
+                            <tbody>
+
+                                <tr>
+                                    <th>Id</th>
+
+                                    <th>Status</th>
+                                    <th>Category</th>
+                                    <th>Subject</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>archive</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+
+                                @foreach (var p in ViewBag.res)
+                                {
+
+                                    <tr class="@(p.readableRec == "novue" ? "notReadYet" : null)">
+
+                                        <td class="mailbox-id">
+                                            @p.id
+
+
+                                        </td>
+                                        <td>@p.status</td>
+                                        <td class="mailbox-star">
+
+                                            @{
+                                                var greeting = p.category;
+                                                string title = p.title;
+
+
+                                            }
+                                            @greeting
+
+
+
+
+                                        </td>
+                                        <td class="mailbox-name">
+
+                                            @Html.ActionLink((string)p.title, "Details", new { id = p.id })
+
+
+                                        </td>
+                                        <td class="mailbox-subject">
+                                            @Html.Raw(HttpUtility.HtmlDecode(@p.description))
+                                        </td>
+
+                                        <td class="mailbox-date">@p.dateReclamation</td>
+
+
+                                        <td>
+                                            @Html.ActionLink("archive", "archiveReclamation", new { id = p.id })
+
+
+                                        </td>
+
+                                        <td>
+                                            @Html.ActionLink("update", "updateReclamation", new { id = p.id })
+
+
+                                        </td>
+
+                                        <td>
+                                            @Html.ActionLink("delete", "deleteRec", new { id = p.id })
+
+
+                                        </td>
+                                    </tr>
+                                                }
+
+                            </tbody>
+                        </table>
+                        <!-- /.table -->
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.box-body -->
+
+
+
+                <div class="box-footer no-padding">
+                    <div class="mailbox-controls">
+                        <!-- Check all button -->
+                        <button type="button" class="btn btn-default btn-sm checkbox-toggle">
+                            <i class="fa fa-square-o"></i>
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+                        </div>
+
+                        <!-- /.btn-group -->
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                        <div class="pull-right">
+                            1-50/200
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                            </div>
+                            <!-- /.btn-group -->
+                        </div>
+                        <!-- /.pull-right -->
+                    </div>
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
